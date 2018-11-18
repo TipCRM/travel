@@ -8,7 +8,7 @@
     </appender>
     <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${TRAVEL_SERVICE_LOG_HOME}/travel-service.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <FileNamePattern>${TRAVEL_SERVICE_LOG_HOME}/travel.log.%d{yyyy-MM-dd}</FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
