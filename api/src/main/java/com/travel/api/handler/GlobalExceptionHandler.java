@@ -2,9 +2,12 @@ package com.travel.api.handler;
 
 
 import com.travel.api.utils.JsonEntity;
+import com.travel.service.entity.SysException;
 import com.travel.service.exception.UnauthenticatedException;
+import com.travel.service.service.ExceptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    @Autowired
+    private ExceptionService exceptionService;
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthenticatedException.class)
@@ -43,6 +48,7 @@ public class GlobalExceptionHandler {
         logger.error("ERROR: " + e.getMessage(), e);
         // report(e);
         JsonEntity jsonEntity = new JsonEntity();
+        exceptionService.saveException(e);
         jsonEntity.setStatus(getStatus(request).value());
         jsonEntity.setMessage(e.getMessage());
         return jsonEntity;

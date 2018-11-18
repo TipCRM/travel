@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: travel
@@ -25,3 +24,8 @@ token:
   expiresSecond: 604800
 server:
   port: 8080
+
+travel:
+  exception-log:
+    db: ${TRAVEL_EXCEPTION_LOG_TO_DB}
+    email: ${TRAVEL_EXCEPTION_LOG_TO_EMAIL}
